@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.ArrayList;
+
 public class Usuario {
 	
 	private int CI;
@@ -7,15 +9,19 @@ public class Usuario {
 	private String apellido;
 	private String mail;
 	private String password;
+	private TipoUsuario tipoUsuario;
+	private ArrayList<Prestamo> prestamos;
 	
-	public Usuario(int CI, String nombre, String apellido, String mail, String password) {
+	public Usuario(int CI, String nombre, String apellido, String mail, String password, TipoUsuario tipoUsuario) {
 		this.CI = CI;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.mail = mail;
 		this.password = password;
+		this.tipoUsuario = tipoUsuario;
+		this.prestamos = new ArrayList<Prestamo>();
 	}
-
+	
 	public int getCI() {
 		return CI;
 	}
@@ -54,6 +60,22 @@ public class Usuario {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+
+	public ArrayList<Prestamo> getPrestamos() {
+		return prestamos;
+	}
+
+	public void setPrestamos(ArrayList<Prestamo> prestamos) {
+		this.prestamos = prestamos;
 	}
 	
 }
