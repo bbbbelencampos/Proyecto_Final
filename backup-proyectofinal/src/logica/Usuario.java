@@ -11,6 +11,7 @@ public class Usuario {
 	private String mail;
 	private String password;
 	private TipoUsuario tipoUsuario;
+	
 	private ArrayList<Prestamo> prestamos;
 	
 	public Usuario(int id, int CI, String nombre, String apellido, String mail, String password, TipoUsuario tipoUsuario) {
