@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Usuario {
 	
+	private int id;
 	private int CI;
 	private String nombre;
 	private String apellido;
@@ -12,7 +13,8 @@ public class Usuario {
 	private TipoUsuario tipoUsuario;
 	private ArrayList<Prestamo> prestamos;
 	
-	public Usuario(int CI, String nombre, String apellido, String mail, String password, TipoUsuario tipoUsuario) {
+	public Usuario(int id, int CI, String nombre, String apellido, String mail, String password, TipoUsuario tipoUsuario) {
+		this.id = id;
 		this.CI = CI;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -20,6 +22,14 @@ public class Usuario {
 		this.password = password;
 		this.tipoUsuario = tipoUsuario;
 		this.prestamos = new ArrayList<Prestamo>();
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public int getCI() {
