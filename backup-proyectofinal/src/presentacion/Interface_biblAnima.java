@@ -7,8 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import persistencia.conn;
-
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
@@ -22,6 +20,7 @@ import java.awt.Choice;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JScrollBar;
@@ -107,12 +106,6 @@ public class Interface_biblAnima extends JFrame {
 		princialPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(princialPanel);
 		princialPanel.setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.ORANGE);
-		panel.setBounds(0, 0, 440, 388);
-		princialPanel.add(panel);
-		panel.setLayout(null);
 		
 		JPanel altaUsuario = new JPanel();
 		altaUsuario.setBackground(Color.PINK);
@@ -204,12 +197,13 @@ public class Interface_biblAnima extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Conn cc = new Conn();
 				Connection cn = cc.conectarMySQL();
+
 				String NombreCompleto, Curso;
 				int Edad, CI;
 				String sql="";
-				nombre = T_nom.getText();
-				ci = Integer.parseInt(T_ced.getText());
-				apellido = T_ape.getText();
+				NombreCompleto = T_nom.getText();
+				CI = Integer.parseInt(T_ced.getText());
+				Apellido = T_ape.getText();
 				mail = T_mail.getText();
 				password = T_pass.getText();
 				sql= "INSERT INTO usuarios(id,ci,nombre,apellido,mail,password)";	
@@ -237,9 +231,15 @@ public class Interface_biblAnima extends JFrame {
 		princialPanel.add(consultaUsuario);
 		consultaUsuario.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(172, 119, 81, 20);
-		consultaUsuario.add(comboBox);
+		JComboBox comboBoxx = new JComboBox();
+		ArrayList<String> lista = new ArrayList<String>();
+		lista = Conexion_consulta.Llenar_combo();
+		for(int i = 0; i<lista.size(); i++) {
+			comboBoxx.addItem(lista.get(i));
+		}
+		
+		comboBoxx.setBounds(172, 119, 81, 20);
+		consultaUsuario.add(comboBoxx);
 		
 		JLabel lblConsultaDeUsuario = new JLabel("Consulta de usuario");
 		lblConsultaDeUsuario.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -258,6 +258,12 @@ public class Interface_biblAnima extends JFrame {
 		JButton btnIniciarConsulta = new JButton("Iniciar consulta");
 		btnIniciarConsulta.setBounds(257, 199, 105, 23);
 		consultaUsuario.add(btnIniciarConsulta);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.ORANGE);
+		panel.setBounds(0, 0, 440, 388);
+		princialPanel.add(panel);
+		panel.setLayout(null);
 		
 		mntmAltaUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
