@@ -1,11 +1,14 @@
 package logica;
 
+import persistencia.*;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Manejador {
-	private ArrayList<Usuario>usuarios;
-	private ArrayList<Libro>libros;
-	private ArrayList<Prestamo>prestamos;
+	public ArrayList<Usuario>usuarios;
+	public ArrayList<Libro>libros;
+	public ArrayList<Prestamo>prestamos;
 
 	private static Manejador instance;
 	
@@ -26,6 +29,10 @@ public class Manejador {
 	//altaUsuario
 	public void altaUsuario(int id, int CI, String nombre, String apellido, String mail, String password, TipoUsuario tipo, Orientacion orient){
 		
+	Conn connect = new Conn();
+	Connection con = connect.conectarMySQL();
+	Statement s;
+	
 		switch(tipo) {
 		case ESTUDIANTE:
 			Estudiante estudiante = new Estudiante(id, CI, nombre, apellido, mail, password, orient, tipo);
