@@ -1,5 +1,8 @@
 package logica;
 
+import persistencia.*;
+import presentacion.*;
+
 import java.util.ArrayList;
 
 public class Manejador {
@@ -20,4 +23,20 @@ public class Manejador {
 		
 		return instance;
 	}
+	
+	public void altaUsuario(int id, int CI, String nombre, String apellido, String mail, String password, TipoUsuario tipo, Orientacion orient){
+		
+		switch(tipo) {
+		case ESTUDIANTE:
+			Estudiante estudiante = new Estudiante(id, CI, nombre, apellido, mail, password, orient, tipo);
+			break;
+		case PROFESOR:
+			Profesor profesor = new Profesor();
+			break;
+		case BIBLIOTECARIO:
+			
+			break;
+		}
+	}
+	
 }
