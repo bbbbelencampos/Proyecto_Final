@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import persistencia.conn;
+
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
@@ -18,14 +21,22 @@ import java.awt.event.ActionEvent;
 import java.awt.Choice;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+
+import javax.swing.JButton;
+import javax.swing.JScrollBar;
+import javax.swing.JList;
+import javax.swing.JComboBox;
+import java.awt.Color;
 
 public class Interface_biblAnima extends JFrame {
 
 	private JPanel princialPanel;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField T_nom;
+	private JTextField T_ape;
+	private JTextField T_mail;
+	private JTextField T_pass;
+	private JTextField T_ced;
 
 	/**
 	 * Launch the application.
@@ -53,10 +64,10 @@ public class Interface_biblAnima extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("New menu");
+		JMenu mnNewMenu = new JMenu("Accion");
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmAltaUsuario = new JMenuItem("Alta Usuario");
+		JMenuItem mntmAltaUsuario = new JMenuItem("Dar de alta un usuario");
 		
 		mnNewMenu.add(mntmAltaUsuario);
 		
@@ -72,7 +83,7 @@ public class Interface_biblAnima extends JFrame {
 		JMenuItem mntmModificarDatosUsuarios = new JMenuItem("Modificar Datos Usuarios");
 		mnNewMenu.add(mntmModificarDatosUsuarios);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Alta prestamos ");
+		JMenuItem mntmNewMenuItem = new JMenuItem("Dar de alta un prestamo");
 		mnNewMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Consultar prestamos");
@@ -84,7 +95,7 @@ public class Interface_biblAnima extends JFrame {
 		JMenuItem mntmAltaNotificacion = new JMenuItem("Alta Notificacion");
 		mnNewMenu.add(mntmAltaNotificacion);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Alta Libros");
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Dar de alta un libro ");
 		mnNewMenu.add(mntmNewMenuItem_3);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Dar de baja un Prestamo");
@@ -97,81 +108,156 @@ public class Interface_biblAnima extends JFrame {
 		setContentPane(princialPanel);
 		princialPanel.setLayout(null);
 		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.ORANGE);
+		panel.setBounds(0, 0, 440, 388);
+		princialPanel.add(panel);
+		panel.setLayout(null);
+		
 		JPanel altaUsuario = new JPanel();
+		altaUsuario.setBackground(Color.PINK);
 		altaUsuario.setBounds(0, 0, 440, 388);
 		princialPanel.add(altaUsuario);
 		altaUsuario.setLayout(null);
 		
+	
+		
 		JLabel lblNewLabel = new JLabel("Nombre");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel.setBounds(145, 88, 70, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		altaUsuario.add(lblNewLabel);
 		
 		JLabel lblApellido = new JLabel("Apellido");
-		lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblApellido.setBounds(145, 121, 46, 14);
+		lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		altaUsuario.add(lblApellido);
 		
 		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(133, 205, 55, 14);
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblPassword.setBounds(136, 175, 55, 14);
 		altaUsuario.add(lblPassword);
 		
 		JLabel lblMail = new JLabel("Mail");
+		lblMail.setBounds(145, 175, 46, 14);
 		lblMail.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblMail.setBounds(145, 150, 46, 14);
 		altaUsuario.add(lblMail);
 		
-		JLabel lblquEsUsted = new JLabel("\u00BFQu\u00E9 es usted?");
+		JLabel lblquEsUsted = new JLabel("Tipo de usuario");
+		lblquEsUsted.setBounds(102, 237, 89, 14);
 		lblquEsUsted.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblquEsUsted.setBounds(113, 225, 92, 14);
 		altaUsuario.add(lblquEsUsted);
 		
 		Choice opciondeusuario = new Choice();
-		opciondeusuario.setBounds(211, 219, 80, 20);
+		opciondeusuario.setBounds(205, 237, 80, 20);
 		altaUsuario.add(opciondeusuario);
 		opciondeusuario.addItem("TIC");
 		opciondeusuario.addItem("TIC&ADM");
 		opciondeusuario.addItem("ADM");
 		
 		JLabel lblNewLabel_1 = new JLabel("Ingrese aqu\u00ED los datos solicitados");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblNewLabel_1.setBounds(63, 42, 298, 20);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		altaUsuario.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
-					textField.requestFocus();
-				};
+		T_nom = new JTextField();
+		T_nom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				T_nom.transferFocus();
 			}
 		});
+		T_nom.setBounds(205, 86, 86, 20);
+		altaUsuario.add(T_nom);
+		T_nom.setColumns(10);
 		
+		T_ape = new JTextField();
+		T_ape.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			T_ape.transferFocus();
+			}
+		});
+		T_ape.setBounds(205, 118, 86, 20);
+		altaUsuario.add(T_ape);
+		T_ape.setColumns(10);
 		
-		textField.setBounds(205, 86, 86, 20);
-		altaUsuario.add(textField);
-		textField.setColumns(10);
+		T_mail = new JTextField();
+		T_mail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				T_mail.transferFocus();
+			}
+		});
+		T_mail.setBounds(205, 173, 86, 20);
+		altaUsuario.add(T_mail);
+		T_mail.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(205, 118, 86, 20);
-		altaUsuario.add(textField_1);
-		textField_1.setColumns(10);
+		T_pass = new JTextField();
+		T_pass.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				T_pass.transferFocus();
+			}
+		});
+		T_pass.setBounds(205, 203, 86, 20);
+		altaUsuario.add(T_pass);
+		T_pass.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(205, 148, 86, 20);
-		altaUsuario.add(textField_2);
-		textField_2.setColumns(10);
+		JButton btnIngresarDatos = new JButton("Ingresar datos");
+		btnIngresarDatos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Conn cc = new Conn();
+				Connection cn = cc.conectarMySQL();
+				String NombreCompleto, Curso;
+				int Edad, CI;
+				String sql="";
+				nombre = T_nom.getText();
+				ci = Integer.parseInt(T_ced.getText());
+				apellido = T_ape.getText();
+				mail = T_mail.getText();
+				password = T_pass.getText();
+				sql= "INSERT INTO usuarios(id,ci,nombre,apellido,mail,password)";	
+			}
+		});
+		btnIngresarDatos.setBounds(258, 291, 103, 23);
+		altaUsuario.add(btnIngresarDatos);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(205, 173, 86, 20);
-		altaUsuario.add(textField_3);
-		textField_3.setColumns(10);
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(102, 291, 89, 23);
+		altaUsuario.add(btnCancelar);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 440, 388);
-		princialPanel.add(panel);
+		T_ced = new JTextField();
+		T_ced.setBounds(205, 142, 86, 20);
+		altaUsuario.add(T_ced);
+		T_ced.setColumns(10);
+		
+		JLabel lblCedula = new JLabel("Cedula");
+		lblCedula.setBounds(145, 150, 46, 14);
+		altaUsuario.add(lblCedula);
+		
+		JPanel consultaUsuario = new JPanel();
+		consultaUsuario.setBackground(Color.PINK);
+		consultaUsuario.setBounds(0, 0, 440, 388);
+		princialPanel.add(consultaUsuario);
+		consultaUsuario.setLayout(null);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(172, 119, 81, 20);
+		consultaUsuario.add(comboBox);
+		
+		JLabel lblConsultaDeUsuario = new JLabel("Consulta de usuario");
+		lblConsultaDeUsuario.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblConsultaDeUsuario.setBounds(136, 30, 181, 20);
+		consultaUsuario.add(lblConsultaDeUsuario);
+		
+		JLabel lblSeleccioneUsuarioA = new JLabel("Seleccione Usuario a consultar");
+		lblSeleccioneUsuarioA.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblSeleccioneUsuarioA.setBounds(122, 94, 195, 14);
+		consultaUsuario.add(lblSeleccioneUsuarioA);
+		
+		JButton btnNewButton = new JButton("Cancelar");
+		btnNewButton.setBounds(105, 199, 89, 23);
+		consultaUsuario.add(btnNewButton);
+		
+		JButton btnIniciarConsulta = new JButton("Iniciar consulta");
+		btnIniciarConsulta.setBounds(257, 199, 105, 23);
+		consultaUsuario.add(btnIniciarConsulta);
 		
 		mntmAltaUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
