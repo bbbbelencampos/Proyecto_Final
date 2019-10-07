@@ -1,6 +1,10 @@
 package logica;
 
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.ArrayList;
+
+import persistencia.Conn;
 
 public class Manejador {
 	private ArrayList<Usuario>usuarios;
@@ -26,10 +30,15 @@ public class Manejador {
 	//altaUsuario
 	public void altaUsuario(int id, int CI, String nombre, String apellido, String mail, String password, TipoUsuario tipo, Orientacion orient){
 		
+		Conn connect = new Conn();
+		Connection con = connect.conectarMySQL();
+		Statement s;
+		
 		switch(tipo) {
 		case ESTUDIANTE:
 			Estudiante estudiante = new Estudiante(id, CI, nombre, apellido, mail, password, orient, tipo);
 			this.usuarios.add(estudiante);
+			
 			break;
 		case PROFESOR:
 			Profesor profesor = new Profesor(id, CI, nombre, apellido, mail, password, orient, tipo);
