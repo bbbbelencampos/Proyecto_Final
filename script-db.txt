@@ -8,25 +8,24 @@ CREATE TABLE usuarios(
     nombre VARCHAR( 30 ),
     apellido VARCHAR( 30 ),
     mail VARCHAR( 30 ) UNIQUE,
-    pass VARCHAR( 30 )
+    pass VARCHAR( 30 ),
+    orientacion VARCHAR( 10 ),
 );
 
 CREATE TABLE estudiantes(
     id INTEGER PRIMARY KEY,
-    orientacion char( 3 ),
     prestamos_activos tinyint,
-    FOREIGN KEY(id) REFERENCES usuarios(id)
+    FOREIGN KEY(id) REFERENCES usuarios(CI)
 );
 
 CREATE TABLE profesores(
     id INTEGER PRIMARY KEY,
-    orientacion VARCHAR( 9 ),
-    FOREIGN KEY(id) REFERENCES usuarios(id)
+    FOREIGN KEY(id) REFERENCES usuarios(CI)
 );
 
 CREATE TABLE biblotecarios(
     id INTEGER PRIMARY KEY,
-    FOREIGN KEY(id) REFERENCES usuarios(id)
+    FOREIGN KEY(id) REFERENCES usuarios(CI)
 );
 
 CREATE TABLE libros(
