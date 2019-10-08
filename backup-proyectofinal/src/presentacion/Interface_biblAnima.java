@@ -32,16 +32,17 @@ import javax.swing.ImageIcon;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.SystemColor;
+import javax.swing.JPasswordField;
 
 public class Interface_biblAnima extends JFrame {
 
 	private JPanel princialPanel;
 	private JTextField T_nom;
-	private JTextField T_ape;
-	private JTextField T_mail;
-	private JTextField T_pass;
-	private JTextField T_ced;
 	private JTextField inputSearch;
+	private JTextField txtApellido;
+	private JTextField txtMailDeLa;
+	private JPasswordField pwdSdad;
+	private JTextField txtCiDelUsuario;
 
 	/**
 	 * Launch the application.
@@ -109,6 +110,75 @@ public class Interface_biblAnima extends JFrame {
 		setContentPane(princialPanel);
 		princialPanel.setLayout(null);
 		
+		JPanel altaUsuario = new JPanel();
+		altaUsuario.setBackground(Color.PINK);
+		altaUsuario.setBounds(0, 0, 884, 540);
+		princialPanel.add(altaUsuario);
+		altaUsuario.setLayout(null);
+				
+				Choice opciondeusuario = new Choice();
+				opciondeusuario.setBounds(633, 463, 80, 20);
+				altaUsuario.add(opciondeusuario);
+				opciondeusuario.addItem("TIC");
+				opciondeusuario.addItem("TIC&ADM");
+				opciondeusuario.addItem("ADM");
+				
+				JLabel lblNewLabel_1 = new JLabel("Ingrese aqu\u00ED los datos solicitados");
+				lblNewLabel_1.setBounds(468, 70, 338, 32);
+				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
+				altaUsuario.add(lblNewLabel_1);
+				
+				T_nom = new JTextField();
+				T_nom.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				T_nom.setText("Nombre");
+				T_nom.setBounds(468, 140, 160, 23);
+				altaUsuario.add(T_nom);
+				T_nom.setColumns(10);
+				
+				JButton btnIngresarDatos = new JButton("Ingresar datos");
+				btnIngresarDatos.setBounds(703, 433, 103, 23);
+				altaUsuario.add(btnIngresarDatos);
+				
+				JButton btnCancelar = new JButton("Cancelar");
+				btnCancelar.setBounds(438, 495, 89, 23);
+				altaUsuario.add(btnCancelar);
+				
+				txtApellido = new JTextField();
+				txtApellido.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				txtApellido.setText("Apellido");
+				txtApellido.setColumns(10);
+				txtApellido.setBounds(646, 140, 160, 23);
+				altaUsuario.add(txtApellido);
+				
+				txtMailDeLa = new JTextField();
+				txtMailDeLa.setText("Ej. usuario@anima.edu.uy");
+				txtMailDeLa.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				txtMailDeLa.setColumns(10);
+				txtMailDeLa.setBounds(468, 248, 338, 23);
+				altaUsuario.add(txtMailDeLa);
+				
+				pwdSdad = new JPasswordField();
+				pwdSdad.setText("sdad");
+				pwdSdad.setBounds(468, 298, 338, 23);
+				altaUsuario.add(pwdSdad);
+				
+				txtCiDelUsuario = new JTextField();
+				txtCiDelUsuario.setText("CI del usuario");
+				txtCiDelUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				txtCiDelUsuario.setColumns(10);
+				txtCiDelUsuario.setBounds(468, 186, 338, 23);
+				altaUsuario.add(txtCiDelUsuario);
+				
+				JLabel lblEmail = new JLabel("E-mail");
+				lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				lblEmail.setBounds(468, 232, 46, 14);
+				altaUsuario.add(lblEmail);
+				
+				JLabel lblPassword = new JLabel("Password");
+				lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				lblPassword.setBounds(468, 282, 74, 14);
+				altaUsuario.add(lblPassword);
+		
 		JPanel listadoUsuario = new JPanel();
 		listadoUsuario.setToolTipText("");
 		listadoUsuario.setBackground(SystemColor.activeCaption);
@@ -125,7 +195,7 @@ public class Interface_biblAnima extends JFrame {
 		inputSearch = new JTextField();
 		inputSearch.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		inputSearch.setText("Ingrese CI de usuario");
+		inputSearch.setText("Ingrese CI de usuario...");
 		inputSearch.setToolTipText("");
 		inputSearch.setBounds(640, 23, 183, 31);
 		listadoUsuario.add(inputSearch);
@@ -141,89 +211,6 @@ public class Interface_biblAnima extends JFrame {
 		JList list = new JList();
 		list.setBounds(26, 423, 836, -327);
 		listadoUsuario.add(list);
-		
-		JPanel altaUsuario = new JPanel();
-		altaUsuario.setBackground(Color.PINK);
-		altaUsuario.setBounds(0, 0, 884, 540);
-		princialPanel.add(altaUsuario);
-		altaUsuario.setLayout(null);
-		
-				
-			
-				
-				JLabel lblNewLabel = new JLabel("Nombre");
-				lblNewLabel.setBounds(145, 88, 70, 14);
-				lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-				altaUsuario.add(lblNewLabel);
-				
-				JLabel lblApellido = new JLabel("Apellido");
-				lblApellido.setBounds(145, 121, 46, 14);
-				lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 13));
-				altaUsuario.add(lblApellido);
-				
-				JLabel lblPassword = new JLabel("Password");
-				lblPassword.setBounds(133, 205, 55, 14);
-				lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 13));
-				altaUsuario.add(lblPassword);
-				
-				JLabel lblMail = new JLabel("Mail");
-				lblMail.setBounds(145, 175, 46, 14);
-				lblMail.setFont(new Font("Tahoma", Font.PLAIN, 13));
-				altaUsuario.add(lblMail);
-				
-				JLabel lblquEsUsted = new JLabel("Tipo de usuario");
-				lblquEsUsted.setBounds(102, 237, 89, 14);
-				lblquEsUsted.setFont(new Font("Tahoma", Font.PLAIN, 13));
-				altaUsuario.add(lblquEsUsted);
-				
-				Choice opciondeusuario = new Choice();
-				opciondeusuario.setBounds(205, 237, 80, 20);
-				altaUsuario.add(opciondeusuario);
-				opciondeusuario.addItem("TIC");
-				opciondeusuario.addItem("TIC&ADM");
-				opciondeusuario.addItem("ADM");
-				
-				JLabel lblNewLabel_1 = new JLabel("Ingrese aqu\u00ED los datos solicitados");
-				lblNewLabel_1.setBounds(285, 43, 298, 20);
-				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
-				altaUsuario.add(lblNewLabel_1);
-				
-				T_nom = new JTextField();
-				T_nom.setBounds(205, 86, 86, 20);
-				altaUsuario.add(T_nom);
-				T_nom.setColumns(10);
-				
-				T_ape = new JTextField();
-				T_ape.setBounds(205, 118, 86, 20);
-				altaUsuario.add(T_ape);
-				T_ape.setColumns(10);
-				
-				T_mail = new JTextField();
-				T_mail.setBounds(205, 173, 86, 20);
-				altaUsuario.add(T_mail);
-				T_mail.setColumns(10);
-				
-				T_pass = new JTextField();
-				T_pass.setBounds(205, 203, 86, 20);
-				altaUsuario.add(T_pass);
-				T_pass.setColumns(10);
-				
-				JButton btnIngresarDatos = new JButton("Ingresar datos");
-				btnIngresarDatos.setBounds(258, 291, 103, 23);
-				altaUsuario.add(btnIngresarDatos);
-				
-				JButton btnCancelar = new JButton("Cancelar");
-				btnCancelar.setBounds(102, 291, 89, 23);
-				altaUsuario.add(btnCancelar);
-				
-				T_ced = new JTextField();
-				T_ced.setBounds(205, 142, 86, 20);
-				altaUsuario.add(T_ced);
-				T_ced.setColumns(10);
-				
-				JLabel lblCedula = new JLabel("Cedula");
-				lblCedula.setBounds(145, 150, 46, 14);
-				altaUsuario.add(lblCedula);
 		
 		
 		//Actions
