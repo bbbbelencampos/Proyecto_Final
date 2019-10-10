@@ -33,16 +33,17 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.SystemColor;
 import javax.swing.JPasswordField;
+import javax.swing.JCheckBox;
 
 public class Interface_biblAnima extends JFrame {
 
 	private JPanel princialPanel;
-	private JTextField T_nom;
+	private JTextField inputNombre;
 	private JTextField inputSearch;
-	private JTextField txtApellido;
-	private JTextField txtMailDeLa;
-	private JPasswordField pwdSdad;
-	private JTextField txtCiDelUsuario;
+	private JTextField inputApellido;
+	private JTextField inputMail;
+	private JTextField inputCI;
+	private JPasswordField inputPassword;
 
 	/**
 	 * Launch the application.
@@ -116,68 +117,58 @@ public class Interface_biblAnima extends JFrame {
 		princialPanel.add(altaUsuario);
 		altaUsuario.setLayout(null);
 				
-				Choice opciondeusuario = new Choice();
-				opciondeusuario.setBounds(633, 463, 80, 20);
-				altaUsuario.add(opciondeusuario);
-				opciondeusuario.addItem("TIC");
-				opciondeusuario.addItem("TIC&ADM");
-				opciondeusuario.addItem("ADM");
-				
 				JLabel lblNewLabel_1 = new JLabel("Ingrese aqu\u00ED los datos solicitados");
 				lblNewLabel_1.setBounds(468, 70, 338, 32);
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
 				altaUsuario.add(lblNewLabel_1);
 				
-				T_nom = new JTextField();
-				T_nom.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				T_nom.setText("Nombre");
-				T_nom.setBounds(468, 140, 160, 23);
-				altaUsuario.add(T_nom);
-				T_nom.setColumns(10);
+				inputNombre = new JTextField();
+				inputNombre.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				inputNombre.setText("Nombre");
+				inputNombre.setBounds(468, 140, 160, 23);
+				altaUsuario.add(inputNombre);
+				inputNombre.setColumns(10);
 				
-				JButton btnIngresarDatos = new JButton("Ingresar datos");
-				btnIngresarDatos.setBounds(703, 433, 103, 23);
-				altaUsuario.add(btnIngresarDatos);
+				inputApellido = new JTextField();
+				inputApellido.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				inputApellido.setText("Apellido");
+				inputApellido.setColumns(10);
+				inputApellido.setBounds(646, 140, 160, 23);
+				altaUsuario.add(inputApellido);
 				
-				JButton btnCancelar = new JButton("Cancelar");
-				btnCancelar.setBounds(438, 495, 89, 23);
-				altaUsuario.add(btnCancelar);
+				inputMail = new JTextField();
 				
-				txtApellido = new JTextField();
-				txtApellido.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				txtApellido.setText("Apellido");
-				txtApellido.setColumns(10);
-				txtApellido.setBounds(646, 140, 160, 23);
-				altaUsuario.add(txtApellido);
+				inputMail.setText("Ej. usuario@anima.edu.uy");
+				inputMail.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				inputMail.setColumns(10);
+				inputMail.setBounds(468, 225, 338, 23);
+				altaUsuario.add(inputMail);
 				
-				txtMailDeLa = new JTextField();
-				txtMailDeLa.setText("Ej. usuario@anima.edu.uy");
-				txtMailDeLa.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				txtMailDeLa.setColumns(10);
-				txtMailDeLa.setBounds(468, 248, 338, 23);
-				altaUsuario.add(txtMailDeLa);
-				
-				pwdSdad = new JPasswordField();
-				pwdSdad.setText("sdad");
-				pwdSdad.setBounds(468, 298, 338, 23);
-				altaUsuario.add(pwdSdad);
-				
-				txtCiDelUsuario = new JTextField();
-				txtCiDelUsuario.setText("CI del usuario");
-				txtCiDelUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				txtCiDelUsuario.setColumns(10);
-				txtCiDelUsuario.setBounds(468, 186, 338, 23);
-				altaUsuario.add(txtCiDelUsuario);
+				inputCI = new JTextField();
+				inputCI.setText("CI del usuario");
+				inputCI.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				inputCI.setColumns(10);
+				inputCI.setBounds(468, 174, 338, 23);
+				altaUsuario.add(inputCI);
 				
 				JLabel lblEmail = new JLabel("E-mail");
 				lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				lblEmail.setBounds(468, 232, 46, 14);
+				lblEmail.setBounds(468, 208, 46, 14);
 				altaUsuario.add(lblEmail);
 				
 				JLabel lblPassword = new JLabel("Password");
 				lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				lblPassword.setBounds(468, 282, 74, 14);
+				lblPassword.setBounds(468, 259, 74, 14);
 				altaUsuario.add(lblPassword);
+				
+				JCheckBox mostrarPassword = new JCheckBox("Mostrar password");
+				
+				mostrarPassword.setBounds(468, 300, 137, 23);
+				altaUsuario.add(mostrarPassword);
+				
+				inputPassword = new JPasswordField();
+				inputPassword.setBounds(468, 275, 338, 20);
+				altaUsuario.add(inputPassword);
 		
 		JPanel listadoUsuario = new JPanel();
 		listadoUsuario.setToolTipText("");
@@ -230,7 +221,78 @@ public class Interface_biblAnima extends JFrame {
 				}
 			});
 		
-			//Users' list
+			//Alta usuario
+			inputNombre.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent arg0) {
+					if( inputNombre.getText().equals("Nombre")) {
+						inputNombre.setText("");						
+					}
+				}
+				@Override
+				public void focusLost(FocusEvent arg0) {
+					if( inputNombre.getText().equals("")) {
+						inputNombre.setText("Nombre");						
+					}
+				}
+			});
+			
+			inputApellido.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent arg0) {
+					if( inputApellido.getText().equals("Apellido")) {
+						inputApellido.setText("");						
+					}
+				}
+				@Override
+				public void focusLost(FocusEvent arg0) {
+					if( inputApellido.getText().equals("")) {
+						inputApellido.setText("Apellido");						
+					}
+				}
+			});
+			
+			inputCI.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent arg0) {
+					if( inputCI.getText().equals("CI del usuario")) {
+						inputCI.setText("");						
+					}
+				}
+				@Override
+				public void focusLost(FocusEvent arg0) {
+					if( inputCI.getText().equals("")) {
+						inputCI.setText("CI del usuario");						
+					}
+				}
+			});
+			
+			inputMail.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent arg0) {
+					if( inputMail.getText().equals("Ej. usuario@anima.edu.uy")) {
+						inputMail.setText("");						
+					}
+				}
+				@Override
+				public void focusLost(FocusEvent arg0) {
+					if( inputMail.getText().equals("")) {
+						inputMail.setText("Ej. usuario@anima.edu.uy");						
+					}
+				}
+			});
+			
+			mostrarPassword.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					if( mostrarPassword.isSelected()) {
+						inputPassword.setEchoChar((char)0);
+					}else {
+						inputPassword.setEchoChar('*');
+					}
+				}
+			});
+			
+			//Listado de usuarios
 			inputSearch.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent arg0) {
@@ -254,7 +316,7 @@ public class Interface_biblAnima extends JFrame {
 			});
 			
 			
-		
+		//sdad
 		
 	}
 }
