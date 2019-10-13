@@ -28,7 +28,7 @@ public class Manejador {
 		return instance;
 	}
 	
-	public void altaUsuario(int id, int CI, String nombre, String apellido, String mail, String password, TipoUsuario tipo, Orientacion orient){
+	public void altaUsuario(int CI, String nombre, String apellido, String mail, String password, TipoUsuario tipo, Orientacion orient){
 		Conn connect = new Conn();
 		Connection con = connect.conectarMySQL();
 		Statement s;
@@ -36,33 +36,35 @@ public class Manejador {
 		switch(tipo) {
 		
 			case ESTUDIANTE:
-				Estudiante estudiante = new Estudiante(id, CI, nombre, apellido, mail, password, orient, tipo);
+				Estudiante estudiante = new Estudiante(CI, nombre, apellido, mail, password, orient, tipo);
 				this.usuarios.add(estudiante);
 				
-				try {
-					s = con.createStatement();
-					ResultSet rs = s.executeQuery ("INSERT INTO usuarios(ci, nombre, apellido, mail, pass) VALUES (" +CI +","+ nombre +","+ apellido +"," +mail +","+ password + ","+ orient +")");
-					
-					while(rs.next()) {
-						System.out.println(rs.getString(1) + rs.getString(2));
-					}
-					
-					
-					
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
 				break;
 			case PROFESOR:
-				Profesor profesor = new Profesor(id, CI, nombre, apellido, mail, password, orient, tipo);
+				Profesor profesor = new Profesor(CI, nombre, apellido, mail, password, orient, tipo);
 				this.usuarios.add(profesor);
+				
 				break;
 			case BIBLIOTECARIO:
-				Bibliotecario bibliotecario = new Bibliotecario(id, CI, nombre, apellido, mail, password, tipo);
+				Bibliotecario bibliotecario = new Bibliotecario(CI, nombre, apellido, mail, password, tipo);
 				this.usuarios.add(bibliotecario);
+				
 				break;
+		}
+		
+		try {
+			s = con.createStatement();
+			ResultSet rs = s.executeQuery ("INSERT INTO usuarios(ci, nombre, apellido, mail, pass, tipo) VALUES (" +CI +","+ nombre +","+ apellido +"," +mail +","+ password + ","+ tipo +")");
+			
+			while(rs.next()) {
+				System.out.println(rs.getString(1) + rs.getString(2));
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

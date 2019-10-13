@@ -3,29 +3,32 @@ CREATE DATABASE biblanima;
 USE biblanima;
 
 CREATE TABLE usuarios(
-    id INTEGER PRIMARY KEY ,
-    ci INTEGER UNIQUE,
+    id INTEGER AUTO_INCREMENT,
+    ci VARCHAR( 10 ) UNIQUE,
     nombre VARCHAR( 30 ),
     apellido VARCHAR( 30 ),
     mail VARCHAR( 30 ) UNIQUE,
     pass VARCHAR( 30 ),
-    orientacion VARCHAR( 10 ),
+    tipo VARCHAR( 30 ),
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE estudiantes(
     id INTEGER PRIMARY KEY,
+    orientacion VARCHAR( 10 ),
     prestamos_activos tinyint,
-    FOREIGN KEY(id) REFERENCES usuarios(CI)
+    FOREIGN KEY(id) REFERENCES usuarios(id)
 );
 
 CREATE TABLE profesores(
     id INTEGER PRIMARY KEY,
-    FOREIGN KEY(id) REFERENCES usuarios(CI)
+    orientacion VARCHAR( 10 ),
+    FOREIGN KEY(id) REFERENCES usuarios(id)
 );
 
 CREATE TABLE biblotecarios(
     id INTEGER PRIMARY KEY,
-    FOREIGN KEY(id) REFERENCES usuarios(CI)
+    FOREIGN KEY(id) REFERENCES usuarios(id)
 );
 
 CREATE TABLE libros(
@@ -43,7 +46,7 @@ CREATE TABLE libros(
 );
 
 CREATE TABLE prestamos(
-	id INTEGER PRIMARY KEY ,
+	id INTEGER AUTO_INCREMENT PRIMARY KEY ,
     devuelto BIT,
     fecha_solicitud DATE,
     fecha_devolucion DATE,
