@@ -23,7 +23,6 @@ public class main {
 					e.printStackTrace();
 				}
 
-		Manejador man = Manejador.getInstance();
 	}
 
 }

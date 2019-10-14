@@ -14,8 +14,7 @@ public class Usuario {
 	
 	private ArrayList<Prestamo> prestamos;
 	
-	public Usuario(int id, int CI, String nombre, String apellido, String mail, String password, TipoUsuario tipoUsuario) {
-		this.id = id;
+	public Usuario(int CI, String nombre, String apellido, String mail, String password, TipoUsuario tipoUsuario) {
 		this.CI = CI;
 		this.nombre = nombre;
 		this.apellido = apellido;

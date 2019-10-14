@@ -1,8 +1,11 @@
 package logica;
 
+<<<<<<< HEAD
 
 import java.sql.Connection;
 import java.sql.Statement;
+=======
+>>>>>>> presentacion
 import java.util.ArrayList;
 
 import persistencia.Conn;
@@ -28,11 +31,16 @@ public class Manejador {
 		
 //Methods
 	
+<<<<<<< HEAD
 	//altaUsuario
 	public void altaUsuario(int id, int CI, String nombre, String apellido, String mail, String password, TipoUsuario tipo, Orientacion orient){
+=======
+	public void altaUsuario(int CI, String nombre, String apellido, String mail, String password, TipoUsuario tipo, Orientacion orient){
+>>>>>>> presentacion
 		
 
 		switch(tipo) {
+<<<<<<< HEAD
 		case ESTUDIANTE:
 			Estudiante estudiante = new Estudiante(id, CI, nombre, apellido, mail, password, orient, tipo);
 			this.usuarios.add(estudiante);
@@ -46,7 +54,26 @@ public class Manejador {
 			Bibliotecario bibliotecario = new Bibliotecario(id, CI, nombre, apellido, mail, password, tipo);
 			this.usuarios.add(bibliotecario);
 			break;
+=======
+		
+			case ESTUDIANTE:
+				Estudiante estudiante = new Estudiante(CI, nombre, apellido, mail, password, orient, tipo);
+				this.usuarios.add(estudiante);
+				
+				break;
+			case PROFESOR:
+				Profesor profesor = new Profesor(CI, nombre, apellido, mail, password, orient, tipo);
+				this.usuarios.add(profesor);
+				
+				break;
+			case BIBLIOTECARIO:
+				Bibliotecario bibliotecario = new Bibliotecario(CI, nombre, apellido, mail, password, tipo);
+				this.usuarios.add(bibliotecario);
+				
+				break;
+>>>>>>> presentacion
 		}
+		
 	}
 	
 	//Listar, buscar, consultar y modificar usuarios

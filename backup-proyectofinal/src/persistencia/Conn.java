@@ -3,19 +3,19 @@ import java.sql.*;
 
 public class Conn {
 	// Library of MySQL
-    public String driver = "com.mysql.cj.jdbc.Driver";
+    public String driver = "com.mysql.jdbc.Driver";
 
     // Data base's name
     public String database = "biblanima";
 
     // Host
-    public String hostname = "127.0.0.1";
+    public String hostname = "localhost";
 
     // Port
     public String port = "3306";
 
     // Ruta de nuestra base de datos (desactivamos el uso de SSL con "?useSSL=false")
-    public String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    public String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database;
 
     // Nombre de usuario
     public String username = "root";
